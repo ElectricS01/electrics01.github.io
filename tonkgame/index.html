@@ -30,16 +30,21 @@
             color: black;
         }
 
-        .topnav a.active {
+        .topnav a.main {
             background-color: #00ff09;
+            color: white;
+        }
+
+        .topnav a.active {
+            background-color: #B1E4B3;
             color: white;
         }
     </style>
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="/">Home</a>
-    <a href="\tonkgame">TonkGame</a>
+    <a class="main" href="/">Home</a>
+    <a class="active" href="\tonkgame">TonkGame</a>
 </div>
 <center>
     <iframe allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0" allowfullscreen="true" scrolling="no" src="game.html" allowtransparency="true" msallowfullscreen="true" id="game_drop" height = '560' width = '960'></iframe>
