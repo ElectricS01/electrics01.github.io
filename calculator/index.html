@@ -44,11 +44,41 @@
 <body>
 <div class="topnav">
     <a class="main" href="/">Home</a>
-    <a class="active" href="\tonkgame">TonkGame</a>
-    <a href="calculator">Calculator</a>
+    <a href="/tonkgame">TonkGame</a>
+    <a class="active" href="/calculator">Calculator</a>
 </div>
-<center>
-    <iframe allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0" allowfullscreen="true" scrolling="no" src="game.html" allowtransparency="true" msallowfullscreen="true" id="game_drop" height = '560' width = '960'></iframe>
-</center>
+<div style="padding-left:16px">
+    <h2>Electric S01's Calculator</h2>
+    <div class='wrapper'>
+        <div class='form-uname'>
+            <label id='nameLabel' for='nameField'>Calculate:</label>
+            <input id='nameField' type='text' maxlength='50' onchange="calculate()">
+        </div>
+        <br>
+        <div class='form-sub'>
+            <button id='subButton' type='button'>Submit</button>
+        </div>
+
+        <div>
+            <p id='result'></p></div>
+    </div>
+</div>
 </body>
-</html>
+<script>
+    let subButton = document.getElementById('subButton')
+    subButton.addEventListener('click', calculate, false)
+
+    function calculate() {
+        let nameField = document.getElementById('nameField').value
+        let result = document.getElementById('result')
+        let solution
+        let operator
+        let multiply = ['*', 'X', 'x']
+
+        if (parseFloat(nameField)) {
+            result.textContent = eval(nameField)
+        } else {
+            result.textContent = nameField.split('')
+        }
+    }
+</script>
