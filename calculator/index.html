@@ -88,16 +88,26 @@
             let num0 = ''
             let num1 = ''
             for (let digit in equation) {
-                if(Number(equation[digit]) || digit === '.') {
+                if(Number(equation[digit]) || equation[digit] === '.' || equation[digit] === '0') {
+                    console.log(equation[digit])
+                    console.log(num1)
                     num1 += equation[digit].toString()
+                    console.log(num1)
                 } else {
                     num0 = num1.toString()
                     num1 = ''
                     op = equation[digit].toString()
                 }
             }
+            if (equation[0] === '-') {
+                console.log(equation[0])
+                num0 = '-' + num0
+                console.log(num0)
+            }
 
             try {
+                console.log(num0)
+                console.log(num1)
                 if (equation.includes('^')) {
                     solution = Math.pow(parseFloat(num0), parseFloat(num1))
                 } else if (times.includes(op)) {
