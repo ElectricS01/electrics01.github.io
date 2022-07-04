@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <meta property="og:site_name" content="Electric S01's website">
+    <meta property="og:title" content="Idk what to put here">
+    <title>Tonk Game by ElectricS01</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.main {
+            background-color: #00ff09;
+            color: white;
+        }
+
+        .topnav a.active {
+            background-color: #B1E4B3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="topnav">
+    <a class="main" href="/">Home</a>
+    <a href="/tonkgame">TonkGame</a>
+    <a class="active" href="/calculator">Calculator</a>
+</div>
+<div style="padding-left:16px">
+    <h2>Electric S01's Calculator</h2>
+    <div class='wrapper'>
+        <div class='form-uname'>
+            <label id='nameLabel' for='nameField'>Calculate:</label>
+            <input id='nameField' type='text' size = '100' onchange="calculate()">
+        </div>
+        <br>
+        <div class='form-sub'>
+            <button id='subButton' type='button'>Submit</button>
+        </div>
+
+        <div>
+            <p id='result'></p></div>
+    </div>
+</div>
+</body>
+<script>
+    let subButton = document.getElementById('subButton')
+    subButton.addEventListener('click', calculate, false)
+
+    function calculate() {
+        let nameField = document.getElementById('nameField').value
+        let result = document.getElementById('result')
+        let equation
+        if(Number(nameField)) {
+            equation = parseFloat(nameField)
+        } else {
+            equation = nameField
+        }
+        let solution = ''
+        let op = ''
+        let times = ['*', 'X', 'x']
+
+        if(Number(equation) || equation === '0') {
+            solution = equation
+
+        } else {
+            let num0 = ''
+            let num1 = ''
+            for (let digit in equation) {
+                if(Number(equation[digit]) || digit === '.') {
+                    num1 += equation[digit].toString()
+                } else {
+                    num0 = num1.toString()
+                    num1 = ''
+                    op = equation[digit].toString()
+                }
+            }
+
+            try {
+                if (equation.includes('^')) {
+                    solution = Math.pow(parseFloat(num0), parseFloat(num1))
+                } else if (times.includes(op)) {
+                    solution = parseFloat(num0) * parseFloat(num1)
+                } else if (equation.includes('/')) {
+                    solution = parseFloat(num0) / parseFloat(num1)
+                } else if (equation.includes('+')) {
+                    solution = parseFloat(num0) + parseFloat(num1)
+                } else if (equation.includes('-')) {
+                    solution = parseFloat(num0) - parseFloat(num1)
+                }
+            } catch {
+                solution = 'Number is to large'
+            }
+        }
+
+        result.textContent = solution
+    }
+</script>
