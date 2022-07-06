@@ -58,21 +58,31 @@
             color: white;
         }
 
-        input[type=text] {
-            width: 80%;
+        input[type=text], select {
+            width: calc(80% - 100px);
             padding: 6px 6px;
             margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
             background-color: #3D3D3D;
             color: white;
         }
 
-        input[type=text]:focus {
-            border: 3px solid #555;
+        input[type=submit] {
+            width: 100px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 6px 6px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
         }
 
     </style>
@@ -83,18 +93,14 @@
     <a href="/tonkgame">TonkGame</a>
     <a class="active" href="/calculator">Calculator</a>
 </div>
-<div style="padding-left:16px">
+<div style="padding-left:16px; padding-right:16px">
     <h2>Electric S01's Calculator</h2>
     <div class='wrapper'>
         <div class='form-uname'>
             <label id='nameLabel' for='nameField'>Calculate:</label>
-            <input style="" id='nameField' type='text' size = '100' onchange="calculate()">
+            <input id='nameField' type='text' size = '100' onchange="calculate()">
+            <input id='subButton' type="submit" value="Submit">
         </div>
-        <br>
-        <div class='form-sub'>
-            <button id='subButton' type='button'>Submit</button>
-        </div>
-
         <div>
             <p id='result'></p></div>
     </div>
