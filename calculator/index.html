@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta property="og:site_name" content="Electric S01's website">
-    <meta property="og:title" content="Idk what to put here">
+    <meta property="og:title" content="ElectricS01's Calculator">
     <title>ElectricS01's Calculator</title>
     <link rel="icon" type="image/x-icon" href="../mainicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,11 +83,14 @@
             let num0 = ''
             let num1 = ''
             for (let digit in equation) {
-                if(Number(equation[digit]) || equation[digit] === '.' || equation[digit] === '0') {
-                    console.log(equation[digit])
-                    console.log(num1)
+                if(equation[digit] === '-' && !Number(equation[digit-1])){
+                    if(num0 === '') {
+                        num0 += equation[digit].toString()
+                    } else {
+                        num1 += equation[digit].toString()
+                    }
+                } else if(Number(equation[digit]) || equation[digit] === '.' || equation[digit] === '0') {
                     num1 += equation[digit].toString()
-                    console.log(num1)
                 } else {
                     num0 = num1.toString()
                     num1 = ''
@@ -95,14 +98,10 @@
                 }
             }
             if (equation[0] === '-') {
-                console.log(equation[0])
                 num0 = '-' + num0
-                console.log(num0)
             }
 
             try {
-                console.log(num0)
-                console.log(num1)
                 if (equation.includes('^')) {
                     solution = Math.pow(parseFloat(num0), parseFloat(num1))
                 } else if (times.includes(op)) {
