@@ -86,15 +86,19 @@
                 if(equation[digit] === '-' && !Number(equation[digit-1])){
                     if(num0 === '') {
                         num0 += equation[digit].toString()
+                        console.log('yeet1')
                     } else {
                         num1 += equation[digit].toString()
+                        console.log('yeet2')
                     }
                 } else if(Number(equation[digit]) || equation[digit] === '.' || equation[digit] === '0') {
                     num1 += equation[digit].toString()
+                    console.log(num1 + 'num1')
                 } else {
                     num0 = num1.toString()
                     num1 = ''
                     op = equation[digit].toString()
+                    console.log('num0=num1')
                 }
             }
             if (equation[0] === '-') {
@@ -102,6 +106,8 @@
             }
 
             try {
+                console.log(num0)
+                console.log(num1)
                 if (equation.includes('^')) {
                     solution = Math.pow(parseFloat(num0), parseFloat(num1))
                 } else if (times.includes(op)) {
