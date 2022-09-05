@@ -1,1 +1,3 @@
-/calculator/ /calculator
+# Redirects from what the browser requests to what we serve
+/calculator/       /calculator
+/tonkgame/         /tonkgame
