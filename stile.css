@@ -4,6 +4,20 @@ body {
     background-color: #181A1B;
 }
 
+.button a {
+    background-color: #282A2B;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.button a:hover {
+    background-color: #2D2F31;
+    color: white;
+}
+
 .topnav {
     overflow: hidden;
     background-color: #282A2B;
@@ -39,6 +53,10 @@ a {
 }
 
 p {
+    color: white;
+}
+
+h1 {
     color: white;
 }
 
