@@ -10,12 +10,13 @@
     </style>
 </head>
 <body>
-<div class="topnav">
+<div class="topnav" id="mobile-topnav">
     <a class="main" href="/">Home</a>
     <a href="tonkgame.html">TonkGame</a>
     <a href="calculator.html">Calculator</a>
     <a href="tetris.html">Tetris</a>
     <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+    <a class="icon" onclick="responsive_topnav()">☰</a>
 </div>
 
 <div style="text-align: center;">
@@ -24,5 +25,15 @@
         <a href="/">Return to Home</a>
     </div>
 </div>
+<script>
+    function responsive_topnav() {
+        const responsive_topnav = document.getElementById("mobile-topnav");
+        if (responsive_topnav.className === "topnav") {
+            responsive_topnav.className += " responsive";
+        } else {
+            responsive_topnav.className = "topnav";
+        }
+    }
+</script>
 </body>
 </html>

@@ -16,14 +16,14 @@
     <a href="calculator.html">Calculator</a>
     <a href="tetris.html">Tetris</a>
     <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-    <a class="icon" onclick="myFunction()">☰</a>
+    <a class="icon" onclick="responsive_topnav()">☰</a>
 </div>
 <div style="text-align: center;">
     <iframe allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder="0" allowfullscreen="true" scrolling="no" src="game.html" allowtransparency="true" msallowfullscreen="true" id="game_drop" height = '560' width = '960'></iframe>
     <h3>TonkGame version 4.2.2 (beta 3)</h3>
 </div>
 <script>
-    function myFunction() {
+    function responsive_topnav() {
         const responsive_topnav = document.getElementById("mobile-topnav");
         if (responsive_topnav.className === "topnav") {
             responsive_topnav.className += " responsive";
