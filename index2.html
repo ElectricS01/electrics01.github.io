@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <meta property="og:site_name" content="Electric S01's website">
+    <meta property="og:title" content="Electric S01's website">
+    <title>ElectricS01's Website</title>
+    <link rel="icon" type="image/x-icon" href="icons/mainicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import "/stile.css";
+
+        .topnav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav a:not(:first-child) {display: none;}
+            .topnav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav.responsive {position: relative;}
+            .topnav.responsive .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            .topnav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+    <a class="main" href="">Home</a>
+    <a href="tonkgame.html">TonkGame</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="tetris.html">Tetris</a>
+    <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+
+    <a class="icon" onclick="myFunction()">☰</a>
+</div>
+
+<div style="padding-left:16px">
+    <h2>Welcome to Electric S01's website</h2>
+    <p>Hi, i'm Electric S01, i'm very bad at coding</p>
+    <br>
+    <a href="https://www.youtube.com/electrics01" title="Go to My Youtube">
+        <img src="youtube.png" alt="My Youtube" style="width:18px;height:12px;">
+        Electric S01
+    </a>
+    <br>
+    <br>
+    <a href="https://electrics01.itch.io" title="Go to My Itch.io">
+        <img src="itch-io.png" alt="My Itch.io" style="width:18px;height:12px;">
+        ElectricS01
+    </a>
+    <br>
+    <br>
+    <a href="https://github.com/ElectricS01" title="Go to My GitHub">
+        <img src="github.png" alt="My GitHub" style="width:18px;height:12px;">
+        ElectricS01
+    </a>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
+</body>
+</html>
