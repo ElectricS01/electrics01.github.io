@@ -9,31 +9,35 @@
         @import "/stile.css";
     </style>
 </head>
-<body>
-<div class="topnav" id="mobile-topnav">
-    <a class="main" href="/">Home</a>
-    <a href="tonkgame.html">TonkGame</a>
-    <a href="calculator.html">Calculator</a>
-    <a href="tetris.html">Tetris</a>
-    <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-    <a class="icon" onclick="responsive_topnav()">☰</a>
-</div>
+<div class="container">
+    <header>
+        <div class="topnav" id="mobile-topnav">
+            <a class="main" href="/">Home</a>
+            <a href="tonkgame.html">TonkGame</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="tetris.html">Tetris</a>
+            <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+            <a class="icon" onclick="responsive_topnav()">☰</a>
+        </div>
+    </header>
 
-<div style="text-align: center;">
-    <h1>Error 404: Page not found</h1>
-    <div class="button">
-        <a href="/">Return to Home</a>
-    </div>
+    <main>
+        <div style="text-align: center;">
+            <h1>Error 404: Page not found</h1>
+            <div class="button">
+                <a href="/">Return to Home</a>
+            </div>
+        </div>
+        <script>
+            function responsive_topnav() {
+                const responsive_topnav = document.getElementById("mobile-topnav");
+                if (responsive_topnav.className === "topnav") {
+                    responsive_topnav.className += " responsive";
+                } else {
+                    responsive_topnav.className = "topnav";
+                }
+            }
+        </script>
+    </main>
 </div>
-<script>
-    function responsive_topnav() {
-        const responsive_topnav = document.getElementById("mobile-topnav");
-        if (responsive_topnav.className === "topnav") {
-            responsive_topnav.className += " responsive";
-        } else {
-            responsive_topnav.className = "topnav";
-        }
-    }
-</script>
-</body>
 </html>

@@ -4,6 +4,16 @@ body {
     background-color: #181A1B;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
 .button a {
     background-color: #282A2B;
     color: #f2f2f2;
@@ -49,6 +59,21 @@ body {
 
 .topnav .icon {
     display: none;
+}
+
+.border {
+    background-color: #282A2B;
+    border-radius: 15px;
+
+    overflow: hidden;
+    width: 300px;
+    height: 350px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width: 600px) {

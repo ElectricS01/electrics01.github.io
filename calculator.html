@@ -9,106 +9,112 @@
         @import "/stile.css";
     </style>
 </head>
-<body>
-<div class="topnav" id="mobile-topnav">
-    <a class="main" href="index.html">Home</a>
-    <a href="tonkgame.html">TonkGame</a>
-    <a class="active" href="calculator.html">Calculator</a>
-    <a href="tetris.html">Tetris</a>
-    <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-    <a class="icon" onclick="responsive_topnav()">☰</a>
-</div>
-<div style="padding-left:16px; padding-right:16px">
-    <h2>ElectricS01's Calculator</h2>
-    <div class='wrapper'>
-        <div class='form-uname'>
-            <label id='nameLabel' for='nameField'>Calculate:</label>
-            <input id='nameField' type='text' size = '100' onchange="calculate()">
-            <input id='subButton' type="submit" value="Submit">
+<div class="container">
+    <header>
+        <div class="topnav" id="mobile-topnav">
+            <a class="main" href="index.html">Home</a>
+            <a href="tonkgame.html">TonkGame</a>
+            <a class="active" href="calculator.html">Calculator</a>
+            <a href="tetris.html">Tetris</a>
+            <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+            <a class="icon" onclick="responsive_topnav()">☰</a>
         </div>
-        <div>
-            <p id='result'></p></div>
-    </div>
-</div>
-<script>
-    function responsive_topnav() {
-        const responsive_topnav = document.getElementById("mobile-topnav");
-        if (responsive_topnav.className === "topnav") {
-            responsive_topnav.className += " responsive";
-        } else {
-            responsive_topnav.className = "topnav";
-        }
-    }
+    </header>
 
-    let subButton = document.getElementById('subButton')
-    subButton.addEventListener('click', calculate, false)
-
-    function calculate() {
-        let nameField = document.getElementById('nameField').value
-        let result = document.getElementById('result')
-        let equation
-        if(Number(nameField)) {
-            equation = parseFloat(nameField)
-        } else {
-            equation = nameField
-        }
-        let solution = ''
-        let op = ''
-        let times = ['*', 'X', 'x']
-
-        if(equation === '9+10' || equation === '9 + 10') {
-            solution = 21
-
-        } else if(Number(equation) || equation === '0') {
-            solution = equation
-
-        } else {
-            let num0 = ''
-            let num1 = ''
-            for (let digit in equation) {
-                if(equation[digit] === '-' && !Number(equation[digit-1])){
-                    if(num0 === '') {
-                        num0 += equation[digit].toString()
-                        console.log('yeet1')
-                    } else {
-                        num1 += equation[digit].toString()
-                        console.log('yeet2')
-                    }
-                } else if(Number(equation[digit]) || equation[digit] === '.' || equation[digit] === '0') {
-                    num1 += equation[digit].toString()
-                    console.log(num1 + 'num1')
+    <main>
+        <div style="padding-left:16px; padding-right:16px">
+            <h2>ElectricS01's Calculator</h2>
+            <div class='wrapper'>
+                <div class='form-uname'>
+                    <label id='nameLabel' for='nameField'>Calculate:</label>
+                    <input id='nameField' type='text' size = '100' onchange="calculate()">
+                    <input id='subButton' type="submit" value="Submit">
+                </div>
+                <div>
+                    <p id='result'></p>
+                </div>
+            </div>
+        </div>
+        <script>
+            function responsive_topnav() {
+                const responsive_topnav = document.getElementById("mobile-topnav");
+                if (responsive_topnav.className === "topnav") {
+                    responsive_topnav.className += " responsive";
                 } else {
-                    num0 = num1.toString()
-                    num1 = ''
-                    op = equation[digit].toString()
-                    console.log('num0=num1')
+                    responsive_topnav.className = "topnav";
                 }
             }
-            if (equation[0] === '-') {
-                num0 = '-' + num0
-            }
 
-            try {
-                console.log(num0)
-                console.log(num1)
-                if (equation.includes('^')) {
-                    solution = Math.pow(parseFloat(num0), parseFloat(num1))
-                } else if (times.includes(op)) {
-                    solution = parseFloat(num0) * parseFloat(num1)
-                } else if (equation.includes('/')) {
-                    solution = parseFloat(num0) / parseFloat(num1)
-                } else if (equation.includes('+')) {
-                    solution = parseFloat(num0) + parseFloat(num1)
-                } else if (equation.includes('-')) {
-                    solution = parseFloat(num0) - parseFloat(num1)
+            let subButton = document.getElementById('subButton')
+            subButton.addEventListener('click', calculate, false)
+
+            function calculate() {
+                let nameField = document.getElementById('nameField').value
+                let result = document.getElementById('result')
+                let equation
+                if(Number(nameField)) {
+                    equation = parseFloat(nameField)
+                } else {
+                    equation = nameField
                 }
-            } catch {
-                solution = 'Number is to large'
-            }
-        }
+                let solution = ''
+                let op = ''
+                let times = ['*', 'X', 'x']
 
-        result.textContent = solution
-    }
-</script>
-</body>
+                if(equation === '9+10' || equation === '9 + 10') {
+                    solution = 21
+
+                } else if(Number(equation) || equation === '0') {
+                    solution = equation
+
+                } else {
+                    let num0 = ''
+                    let num1 = ''
+                    for (let digit in equation) {
+                        if(equation[digit] === '-' && !Number(equation[digit-1])){
+                            if(num0 === '') {
+                                num0 += equation[digit].toString()
+                                console.log('yeet1')
+                            } else {
+                                num1 += equation[digit].toString()
+                                console.log('yeet2')
+                            }
+                        } else if(Number(equation[digit]) || equation[digit] === '.' || equation[digit] === '0') {
+                            num1 += equation[digit].toString()
+                            console.log(num1 + 'num1')
+                        } else {
+                            num0 = num1.toString()
+                            num1 = ''
+                            op = equation[digit].toString()
+                            console.log('num0=num1')
+                        }
+                    }
+                    if (equation[0] === '-') {
+                        num0 = '-' + num0
+                    }
+
+                    try {
+                        console.log(num0)
+                        console.log(num1)
+                        if (equation.includes('^')) {
+                            solution = Math.pow(parseFloat(num0), parseFloat(num1))
+                        } else if (times.includes(op)) {
+                            solution = parseFloat(num0) * parseFloat(num1)
+                        } else if (equation.includes('/')) {
+                            solution = parseFloat(num0) / parseFloat(num1)
+                        } else if (equation.includes('+')) {
+                            solution = parseFloat(num0) + parseFloat(num1)
+                        } else if (equation.includes('-')) {
+                            solution = parseFloat(num0) - parseFloat(num1)
+                        }
+                    } catch {
+                        solution = 'Number is to large'
+                    }
+                }
+
+                result.textContent = solution
+            }
+        </script>
+    </main>
+</div>
 </html>

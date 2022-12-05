@@ -9,46 +9,58 @@
         @import "/stile.css";
     </style>
 </head>
-<body>
-<div class="topnav" id="mobile-topnav">
-    <a class="main" href="">Home</a>
-    <a href="tonkgame.html">TonkGame</a>
-    <a href="calculator.html">Calculator</a>
-    <a href="tetris.html">Tetris</a>
-    <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-    <a class="icon" onclick="responsive_topnav()">☰</a>
-</div>
+<div class="container">
+    <header>
+        <div class="topnav" id="mobile-topnav">
+            <a class="main" href="">Home</a>
+            <a href="tonkgame.html">TonkGame</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="tetris.html">Tetris</a>
+            <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+            <a class="icon" onclick="responsive_topnav()">☰</a>
+        </div>
+    </header>
 
-<div style="padding-left:16px">
-    <h2>Welcome to ElectricS01's website</h2>
-    <p>Hi, I'm ElectricS01, I make random things in Python, JavaScript and GameMaker</p>
-    <br>
-    <a href="https://www.youtube.com/electrics01" title="Go to My Youtube">
-        <img src="youtube.png" alt="My Youtube" style="width:18px;height:12px;">
-        Electric S01
-    </a>
-    <br>
-    <br>
-    <a href="https://electrics01.itch.io" title="Go to My Itch.io">
-        <img src="itch-io.png" alt="My Itch.io" style="width:18px;height:12px;">
-        ElectricS01
-    </a>
-    <br>
-    <br>
-    <a href="https://github.com/ElectricS01" title="Go to My GitHub">
-        <img src="github.png" alt="My GitHub" style="width:18px;height:12px;">
-        ElectricS01
-    </a>
+    <main>
+        <div style="text-align: center;">
+            <h2>Welcome to ElectricS01's website</h2>
+            <p>Hi, I'm ElectricS01, I make random things in Python, JavaScript and GameMaker</p>
+            <br>
+            
+            <br>
+            <a href="https://www.youtube.com/electrics01" title="Go to My Youtube">
+                <img src="youtube.png" alt="My Youtube" style="width:18px;height:12px;">
+                Electric S01
+            </a>
+            <br>
+            <br>
+            <a href="https://electrics01.itch.io" title="Go to My Itch.io">
+                <img src="itch-io.png" alt="My Itch.io" style="width:18px;height:12px;">
+                ElectricS01
+            </a>
+            <br>
+            <br>
+            <a href="https://github.com/ElectricS01" title="Go to My GitHub">
+                <img src="github.png" alt="My GitHub" style="width:18px;height:12px;">
+                ElectricS01
+            </a>
+            <br>
+            <br>
+            <a href="https://discord.com/users/691540630907781171" title="Go to My Discord">
+                <img src="discord.png" alt="My Discord" style="width:18px;height:12px;">
+                ElectricS01
+            </a>
+        </div>
+        <script>
+            function responsive_topnav() {
+                const responsive_topnav = document.getElementById("mobile-topnav");
+                if (responsive_topnav.className === "topnav") {
+                    responsive_topnav.className += " responsive";
+                } else {
+                    responsive_topnav.className = "topnav";
+                }
+            }
+        </script>
+    </main>
 </div>
-<script>
-    function responsive_topnav() {
-        const responsive_topnav = document.getElementById("mobile-topnav");
-        if (responsive_topnav.className === "topnav") {
-            responsive_topnav.className += " responsive";
-        } else {
-            responsive_topnav.className = "topnav";
-        }
-    }
-</script>
-</body>
 </html>
