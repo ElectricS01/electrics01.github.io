@@ -28,6 +28,8 @@
                 <div class='form-uname'>
                     <label id='nameLabel'>Calculate:</label>
                     <input id="expression" type="text"/>
+                    <label for="useBodmas">Use BODMAS:</label>
+                    <input id="useBodmas" type="checkbox" checked />
                 </div>
                 <div>
                     <p id='result'></p>
@@ -35,18 +37,50 @@
             </div>
         </div>
         <script>
+          // Get a reference to the input and result elements
           const expressionInput = document.getElementById("expression");
+          const useBodmasInput = document.getElementById("useBodmas");
           const resultElement = document.getElementById("result");
 
+          // Set up an event listener to trigger the calculation when the input value changes
           expressionInput.addEventListener("input", calculate);
+          useBodmasInput.addEventListener("input", calculate);
 
           function calculate() {
-            const expression = expressionInput.value;
+            // Get the value of the input element
+            let expression = expressionInput.value;
 
+            // Check if the BODMAS switch is checked
+            if (useBodmasInput.checked) {
+              // Evaluate expressions within parentheses first
+              while (expression.includes("(")) {
+                const startIndex = expression.lastIndexOf("(");
+                const endIndex = expression.indexOf(")", startIndex);
+                const subexpression = expression.slice(startIndex + 1, endIndex);
+                const subresult = evaluate(subexpression);
+                expression =
+                  expression.slice(0, startIndex) +
+                  subresult +
+                  expression.slice(endIndex + 1);
+              }
+            }
+
+            // Evaluate the remaining expression
+            const result = evaluate(expression);
+
+            // Update the result element with the calculated result
+            resultElement.textContent = result;
+          }
+
+          function evaluate(expression) {
+            // Split the expression into an array of numbers and operators
             const tokens = expression.split(/\s*([+-/*^])\s*(?=\d)/);
 
+            // Initialize the result to the first number
             let result = Number(tokens[0]);
 
+            // Iterate through the array and perform the indicated operation on the result
+            // and the next number in the array
             for (let i = 1; i < tokens.length; i += 2) {
               const operator = tokens[i];
               const operand = Number(tokens[i + 1]);
@@ -63,7 +97,7 @@
               }
             }
 
-            resultElement.textContent = result;
+            return result;
           }
         </script>
     </main>
