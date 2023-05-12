@@ -1,105 +1,109 @@
 <html lang="en">
-<head>
-    <meta property="og:site_name" content="ElectricS01's website">
-    <meta property="og:title" content="ElectricS01's Calculator">
+  <head>
+    <meta property="og:site_name" content="ElectricS01's website" />
+    <meta property="og:title" content="ElectricS01's Calculator" />
     <title>ElectricS01's Calculator</title>
-    <link rel="icon" type="image/x-icon" href="icons/mainicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="icons/mainicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+      charset="utf-8"
+    />
     <style>
-        @import "/stile.css";
+      @import "/stile.css";
     </style>
-</head>
-<div class="container">
+  </head>
+  <div class="container">
     <header>
-        <div class="topnav" id="mobile-topnav">
-            <a class="main" href="index.html">Home</a>
-            <a href="tonkgame.html">TonkGame</a>
-            <a class="active" href="calculator.html">Calculator</a>
-            <a href="tetris.html">Tetris</a>
-            <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-            <a class="icon" onclick="responsive_topnav()">☰</a>
-        </div>
+      <div class="navbar" id="mobile-navbar">
+        <a class="main" href="/" onclick="responsive_navbar(true)">
+          ElectricS01.com
+        </a>
+        <a href="/tonkgame" onclick="responsive_navbar()"> TonkGame </a>
+        <a href="/calculator" onclick="responsive_navbar()"> Calculator </a>
+        <a href="/tetris" onclick="responsive_navbar()"> Tetris </a>
+        <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+        <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
+      </div>
     </header>
 
     <main>
-        <div style="padding-left:16px; padding-right:16px">
-            <h2>ElectricS01's Calculator</h2>
-            <div class='wrapper'>
-                <div class='form-uname'>
-                    <label id='nameLabel'>Calculate:</label>
-                    <input id="expression" type="text"/>
-                    <label for="useBodmas">Use BODMAS:</label>
-                    <input id="useBodmas" type="checkbox" checked />
-                </div>
-                <div>
-                    <p id='result'></p>
-                </div>
-            </div>
-        </div>
-        <script>
-          // Get a reference to the input and result elements
-          const expressionInput = document.getElementById("expression");
-          const useBodmasInput = document.getElementById("useBodmas");
-          const resultElement = document.getElementById("result");
-
-          // Set up an event listener to trigger the calculation when the input value changes
-          expressionInput.addEventListener("input", calculate);
-          useBodmasInput.addEventListener("input", calculate);
-
-          function calculate() {
-            // Get the value of the input element
-            let expression = expressionInput.value;
-
-            // Check if the BODMAS switch is checked
-            if (useBodmasInput.checked) {
-              // Evaluate expressions within parentheses first
-              while (expression.includes("(")) {
-                const startIndex = expression.lastIndexOf("(");
-                const endIndex = expression.indexOf(")", startIndex);
-                const subexpression = expression.slice(startIndex + 1, endIndex);
-                const subresult = evaluate(subexpression);
-                expression =
-                  expression.slice(0, startIndex) +
-                  subresult +
-                  expression.slice(endIndex + 1);
-              }
+      <div class="container" style="padding: 0 16px; text-align: left">
+        <h2>ElectricS01's Calculator</h2>
+        <label for="equation">Enter your equation:</label>
+        <input id="equation" type="text" />
+        <p class="text-main" id="result"></p>
+      </div>
+      <script>
+        function responsive_navbar(override) {
+          const responsive_navbar = document.getElementById("mobile-navbar");
+          if (!override) {
+            if (responsive_navbar.className === "navbar") {
+              responsive_navbar.className += " responsive";
+            } else {
+              responsive_navbar.className = "navbar";
             }
+          }
+        }
 
-            // Evaluate the remaining expression
-            const result = evaluate(expression);
+        // Get a reference to the input and result elements
+        const equationInput = document.getElementById("equation");
+        const resultElement = document.getElementById("result");
 
-            // Update the result element with the calculated result
-            resultElement.textContent = result;
+        // Set up an event listener to trigger the calculation when the input value changes
+        equationInput.addEventListener("input", calculate);
+
+        function calculate() {
+          // Get the value of the input element
+          let equation = equationInput.value;
+
+          // Evaluate equations within parentheses first
+          while (equation.includes("(")) {
+            const startIndex = equation.lastIndexOf("(");
+            const endIndex = equation.indexOf(")", startIndex);
+            const subequation = equation.slice(startIndex + 1, endIndex);
+            const subresult = evaluate(subequation);
+            equation =
+              equation.slice(0, startIndex) +
+              subresult +
+              equation.slice(endIndex + 1);
           }
 
-          function evaluate(expression) {
-            // Split the expression into an array of numbers and operators
-            const tokens = expression.split(/\s*([+-/*^])\s*(?=\d)/);
+          // Evaluate the remaining equation
+          const result = evaluate(equation);
 
-            // Initialize the result to the first number
-            let result = Number(tokens[0]);
+          // Update the result element with the calculated result
+          resultElement.textContent = result;
+        }
 
-            // Iterate through the array and perform the indicated operation on the result
-            // and the next number in the array
-            for (let i = 1; i < tokens.length; i += 2) {
-              const operator = tokens[i];
-              const operand = Number(tokens[i + 1]);
-              if (operator === "+") {
-                result += operand;
-              } else if (operator === "-") {
-                result -= operand;
-              } else if (operator === "*") {
-                result *= operand;
-              } else if (operator === "/") {
-                result /= operand;
-              } else if (operator === "^") {
-                result = Math.pow(result, operand);
-              }
+        function evaluate(equation) {
+          // Split the equation into an array of numbers and operators
+          const tokens = equation.split(/\s*([+-/*^])\s*(?=\d)/);
+
+          // Initialize the result to the first number
+          let result = Number(tokens[0]);
+
+          // Iterate through the array and perform the indicated operation on the result
+          // and the next number in the array
+          for (let i = 1; i < tokens.length; i += 2) {
+            const operator = tokens[i];
+            const operand = Number(tokens[i + 1]);
+            if (operator === "+") {
+              result += operand;
+            } else if (operator === "-") {
+              result -= operand;
+            } else if (operator === "*") {
+              result *= operand;
+            } else if (operator === "/") {
+              result /= operand;
+            } else if (operator === "^") {
+              result = Math.pow(result, operand);
             }
-
-            return result;
           }
-        </script>
+
+          return result;
+        }
+      </script>
     </main>
-</div>
+  </div>
 </html>

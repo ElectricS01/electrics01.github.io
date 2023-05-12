@@ -1,40 +1,48 @@
 <html lang="en">
-<head>
-    <meta property="og:site_name" content="ElectricS01's website">
-    <meta property="og:title" content="ElectricS01's website">
+  <head>
+    <meta property="og:site_name" content="ElectricS01's website" />
+    <meta property="og:title" content="ElectricS01's website" />
     <title>ElectricS01's Website</title>
-    <link rel="icon" type="image/x-icon" href="icons/mainicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="icons/mainicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+      charset="utf-8"
+    />
     <style>
-        @import "/stile.css";
+      @import "/stile.css";
     </style>
-</head>
-<div class="container">
+  </head>
+  <div class="container">
     <header>
-        <div class="topnav" id="mobile-topnav">
-            <a class="main" href="">Home</a>
-            <a href="tonkgame.html">TonkGame</a>
-            <a href="calculator.html">Calculator</a>
-            <a href="tetris.html">Tetris</a>
-            <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-            <a class="icon" onclick="responsive_topnav()">☰</a>
-        </div>
+      <div class="navbar" id="mobile-navbar">
+        <a class="main" href="/" onclick="responsive_navbar(true)">
+          ElectricS01.com
+        </a>
+        <a href="/tonkgame" onclick="responsive_navbar()"> TonkGame </a>
+        <a href="/calculator" onclick="responsive_navbar()"> Calculator </a>
+        <a href="/tetris" onclick="responsive_navbar()"> Tetris </a>
+        <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+        <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
+      </div>
     </header>
 
     <main>
-        <div style="text-align: center;">
-            <p>test</p>
-        </div>
-        <script>
-            function responsive_topnav() {
-                const responsive_topnav = document.getElementById("mobile-topnav");
-                if (responsive_topnav.className === "topnav") {
-                    responsive_topnav.className += " responsive";
-                } else {
-                    responsive_topnav.className = "topnav";
-                }
+      <div style="text-align: center">
+        <p>test</p>
+      </div>
+      <script>
+        function responsive_navbar(override) {
+          const responsive_navbar = document.getElementById("mobile-navbar");
+          if (!override) {
+            if (responsive_navbar.className === "navbar") {
+              responsive_navbar.className += " responsive";
+            } else {
+              responsive_navbar.className = "navbar";
             }
-        </script>
+          }
+        }
+      </script>
     </main>
-</div>
+  </div>
 </html>
