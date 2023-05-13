@@ -3,7 +3,7 @@
     <meta property="og:site_name" content="ElectricS01's website" />
     <meta property="og:title" content="ElectricS01's website" />
     <title>ElectricS01's Website</title>
-    <link rel="icon" type="image/x-icon" href="icons/mainicon.ico" />
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
@@ -13,37 +13,35 @@
       @import "/stile.css";
     </style>
   </head>
-  <div class="container">
-    <header>
-      <div class="navbar" id="mobile-navbar">
-        <a class="main" href="/" onclick="responsive_navbar(true)">
-          ElectricS01.com
-        </a>
-        <a href="/tonkgame" onclick="responsive_navbar()"> TonkGame </a>
-        <a href="/calculator" onclick="responsive_navbar()"> Calculator </a>
-        <a href="/tetris" onclick="responsive_navbar()"> Tetris </a>
-        <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
-        <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
-      </div>
-    </header>
+  <header>
+    <div class="navbar" id="mobile-navbar">
+      <a class="main" href="/" onclick="responsive_navbar(true)">
+        ElectricS01.com
+      </a>
+      <a href="/tonkgame" onclick="responsive_navbar()"> TonkGame </a>
+      <a href="/calculator" onclick="responsive_navbar()"> Calculator </a>
+      <a href="/tetris" onclick="responsive_navbar()"> Tetris </a>
+      <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
+      <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
+    </div>
+  </header>
 
-    <main>
-      <div class="container">
-        <h2>Error 404: Page not found</h2>
-        <div class="button">
-          <a href="/">Return to Home</a>
-        </div>
+  <main>
+    <div class="container">
+      <h2>Error 404: Page not found</h2>
+      <div class="button">
+        <a href="/">Return to Home</a>
       </div>
-      <script>
-        function responsive_navbar() {
-          const responsive_navbar = document.getElementById("mobile-navbar");
-          if (responsive_navbar.className === "navbar") {
-            responsive_navbar.className += " responsive";
-          } else {
-            responsive_navbar.className = "navbar";
-          }
+    </div>
+    <script>
+      function responsive_navbar() {
+        const responsive_navbar = document.getElementById("mobile-navbar");
+        if (responsive_navbar.className === "navbar") {
+          responsive_navbar.className += " responsive";
+        } else {
+          responsive_navbar.className = "navbar";
         }
-      </script>
-    </main>
-  </div>
+      }
+    </script>
+  </main>
 </html>
