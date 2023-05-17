@@ -34,12 +34,14 @@
       </div>
     </div>
     <script>
-      function responsive_navbar() {
+      function responsive_navbar(override) {
         const responsive_navbar = document.getElementById("mobile-navbar");
-        if (responsive_navbar.className === "navbar") {
-          responsive_navbar.className += " responsive";
-        } else {
-          responsive_navbar.className = "navbar";
+        if (!override) {
+          if (responsive_navbar.className === "navbar") {
+            responsive_navbar.className += " responsive";
+          } else {
+            responsive_navbar.className = "navbar";
+          }
         }
       }
     </script>
