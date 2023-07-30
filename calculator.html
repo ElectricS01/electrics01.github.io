@@ -18,9 +18,9 @@
       <a class="main" href="/" onclick="responsive_navbar(true)">
         ElectricS01.com
       </a>
-      <a href="/tonkgame" onclick="responsive_navbar()"> TonkGame </a>
-      <a href="/calculator" onclick="responsive_navbar()"> Calculator </a>
-      <a href="/tetris" onclick="responsive_navbar()"> Tetris </a>
+      <a href="/tonkgame" onclick="responsive_navbar()">TonkGame</a>
+      <a href="/calculator" onclick="responsive_navbar()">Calculator</a>
+      <a href="/tetris" onclick="responsive_navbar()">Tetris</a>
       <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
       <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
     </div>
@@ -38,73 +38,164 @@
     </div>
     <script>
       function responsive_navbar(override) {
-        const responsive_navbar = document.getElementById("mobile-navbar");
+        const responsive_navbar = document.getElementById("mobile-navbar")
         if (!override) {
           if (responsive_navbar.className === "navbar") {
-            responsive_navbar.className += " responsive";
+            responsive_navbar.className += " responsive"
           } else {
-            responsive_navbar.className = "navbar";
+            responsive_navbar.className = "navbar"
           }
         }
       }
 
-      // Get a reference to the input and result elements
-      const equationInput = document.getElementById("equation");
-      const resultElement = document.getElementById("result");
-
-      // Set up an event listener to trigger the calculation when the input value changes
-      equationInput.addEventListener("input", calculate);
-
-      function calculate() {
-        // Get the value of the input element
-        let equation = equationInput.value;
-
-        // Evaluate equations within parentheses first
-        while (equation.includes("(")) {
-          const startIndex = equation.lastIndexOf("(");
-          const endIndex = equation.indexOf(")", startIndex);
-          const subequation = equation.slice(startIndex + 1, endIndex);
-          const subresult = evaluate(subequation);
-          equation =
-            equation.slice(0, startIndex) +
-            subresult +
-            equation.slice(endIndex + 1);
+      function calculate(operator, operand1, operand2) {
+        switch (operator) {
+          case "+":
+            return operand1 + operand2
+          case "-":
+            return operand1 - operand2
+          case "*":
+            return operand1 * operand2
+          case "/":
+            return operand1 / operand2
+          case "^":
+            return Math.pow(operand1, operand2)
+          default:
+            throw new Error("Invalid operator")
         }
-
-        // Evaluate the remaining equation
-        const result = evaluate(equation);
-
-        // Update the result element with the calculated result
-        resultElement.textContent = result;
       }
 
-      function evaluate(equation) {
-        // Split the equation into an array of numbers and operators
-        const tokens = equation.split(/\s*([+-/*^])\s*(?=\d)/);
+      function evaluateExpression(tokens) {
+        const precedence = {
+          "+": 1,
+          "-": 1,
+          "*": 2,
+          "/": 2,
+          "^": 3
+        }
 
-        // Initialize the result to the first number
-        let result = Number(tokens[0]);
+        const values = []
+        const operators = []
 
-        // Iterate through the array and perform the indicated operation on the result
-        // and the next number in the array
-        for (let i = 1; i < tokens.length; i += 2) {
-          const operator = tokens[i];
-          const operand = Number(tokens[i + 1]);
-          if (operator === "+") {
-            result += operand;
-          } else if (operator === "-") {
-            result -= operand;
-          } else if (operator === "*") {
-            result *= operand;
-          } else if (operator === "/") {
-            result /= operand;
-          } else if (operator === "^") {
-            result = Math.pow(result, operand);
+        for (let i = 0; i < tokens.length; i++) {
+          const token = tokens[i]
+
+          if (!isNaN(token)) {
+            values.push(parseFloat(token))
+          } else if (token in precedence) {
+            while (
+              operators.length > 0 &&
+              operators[operators.length - 1] in precedence &&
+              precedence[operators[operators.length - 1]] >= precedence[token]
+            ) {
+              const operator = operators.pop()
+              const operand2 = values.pop()
+              const operand1 = values.pop()
+              const result = calculate(operator, operand1, operand2)
+              values.push(result)
+            }
+            operators.push(token)
+          } else if (token === "(") {
+            operators.push(token)
+          } else if (token === ")") {
+            while (
+              operators.length > 0 &&
+              operators[operators.length - 1] !== "("
+            ) {
+              const operator = operators.pop()
+              const operand2 = values.pop()
+              const operand1 = values.pop()
+              const result = calculate(operator, operand1, operand2)
+              values.push(result)
+            }
+            if (
+              operators.length === 0 ||
+              operators[operators.length - 1] !== "("
+            ) {
+              throw new Error("Mismatched parentheses")
+            }
+            operators.pop()
+          } else {
+            throw new Error("Invalid token: " + token)
           }
         }
+        while (operators.length > 0) {
+          const operator = operators.pop()
+          const operand2 = values.pop()
+          const operand1 = values.pop()
+          const result = calculate(operator, operand1, operand2)
+          values.push(result)
+        }
 
-        return result;
+        if (values.length !== 1 || operators.length !== 0) {
+          throw new Error("Invalid expression")
+        }
+
+        return values[0]
       }
+
+      function calculateResult() {
+        const equationInput = document.getElementById("equation")
+        const resultDisplay = document.getElementById("result")
+
+        try {
+          const equation = equationInput.value.trim()
+          if (equation === "") {
+            resultDisplay.textContent = "0"
+            return
+          }
+
+          const regex = /(\d*\.?\d+)|(.)|([\+\-\*\/\(\)])/g
+          const tokens = equation.match(regex)
+
+          let result = []
+          let addMultiplication = false
+          for (let i = 0; i < tokens.length; i++) {
+            if (tokens[i] === "-" && i > 0 && tokens[i - 1] === "^") {
+              let merged = tokens[i] + tokens[i + 1]
+              result.pop()
+              result.push("^", merged)
+              i++
+            } else if (tokens[i] === "(" && i > 0) {
+              if (!isNaN(tokens[i - 1]) || tokens[i - 1] === ")") {
+                if (!addMultiplication && result[result.length - 1] !== "*") {
+                  result.push("*", tokens[i])
+                  addMultiplication = false
+                } else {
+                  result.push(tokens[i])
+                }
+              } else {
+                result.push(tokens[i])
+              }
+            } else if (tokens[i] === ")" && i < tokens.length - 1) {
+              if (!isNaN(tokens[i + 1]) || tokens[i + 1] === "(") {
+                if (!addMultiplication && result[result.length - 1] !== "*") {
+                  result.push(tokens[i], "*")
+                  addMultiplication = false
+                } else {
+                  result.push(tokens[i])
+                }
+              } else {
+                result.push(tokens[i])
+              }
+            } else {
+              result.push(tokens[i])
+            }
+          }
+
+          resultDisplay.textContent = evaluateExpression(result)
+        } catch (error) {
+          resultDisplay.textContent = error.message
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const equationInput = document.getElementById("equation")
+        equationInput.addEventListener("input", calculateResult)
+
+        const favicon = document.getElementById("favicon")
+        favicon.href = "/icons/favicon.ico"
+      })
     </script>
   </main>
 </html>
