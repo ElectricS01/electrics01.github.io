@@ -19,9 +19,9 @@
         <a class="main" href="/" onclick="responsive_navbar(true)">
           ElectricS01.com
         </a>
-        <a href="/tonkgame" onclick="responsive_navbar()"> TonkGame </a>
-        <a href="/calculator" onclick="responsive_navbar()"> Calculator </a>
-        <a href="/tetris" onclick="responsive_navbar()"> Tetris </a>
+        <a href="/tonkgame" onclick="responsive_navbar()">TonkGame</a>
+        <a href="/calculator" onclick="responsive_navbar()">Calculator</a>
+        <a href="/tetris" onclick="responsive_navbar()">Tetris</a>
         <a href="https://bettercompassclub.netlify.app">BetterCompass Club</a>
         <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
       </div>
@@ -33,12 +33,12 @@
       </div>
       <script>
         function responsive_navbar(override) {
-          const responsive_navbar = document.getElementById("mobile-navbar");
+          const responsive_navbar = document.getElementById("mobile-navbar")
           if (!override) {
             if (responsive_navbar.className === "navbar") {
-              responsive_navbar.className += " responsive";
+              responsive_navbar.className += " responsive"
             } else {
-              responsive_navbar.className = "navbar";
+              responsive_navbar.className = "navbar"
             }
           }
         }
