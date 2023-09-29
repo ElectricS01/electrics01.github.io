@@ -88,6 +88,11 @@ body {
     color: white;
 }
 
+a {
+    text-decoration: none;
+    color: #00a8fc;
+}
+
 p {
     color: white;
     margin: 0;
