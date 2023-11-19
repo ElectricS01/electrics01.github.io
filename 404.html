@@ -15,15 +15,13 @@
   </head>
   <header>
     <div class="navbar" id="mobile-navbar">
-      <a class="main" href="/" onclick="responsive_navbar(true)">
-        ElectricS01.com
-      </a>
-      <a href="/tonkgame" onclick="responsive_navbar()">TonkGame</a>
-      <a href="/calculator" onclick="responsive_navbar()">Calculator</a>
-      <a href="/tetris" onclick="responsive_navbar()">Tetris</a>
-      <a href="/collider" onclick="responsive_navbar()">Collider</a>
+      <a class="main" href="/" onclick="mobileNav()">ElectricS01.com</a>
+      <a href="/tonkgame" onclick="mobileNav()">TonkGame</a>
+      <a href="/calculator" onclick="mobileNav()">Calculator</a>
+      <a href="/tetris" onclick="mobileNav()">Tetris</a>
+      <a href="/collider" onclick="mobileNav()">Collider</a>
       <a href="https://mapit.electrics01.com">Mapit (Demo)</a>
-      <div class="icon-mobile" onclick="responsive_navbar()">☰</div>
+      <div class="icon-mobile" onclick="mobileNav()">☰</div>
     </div>
   </header>
 
@@ -35,14 +33,12 @@
       </div>
     </div>
     <script>
-      function responsive_navbar(override) {
-        const responsive_navbar = document.getElementById("mobile-navbar")
-        if (!override) {
-          if (responsive_navbar.className === "navbar") {
-            responsive_navbar.className += " responsive"
-          } else {
-            responsive_navbar.className = "navbar"
-          }
+      const mobileNav = () => {
+        const nav = document.getElementById("mobile-navbar")
+        if (nav.className === "navbar") {
+          nav.className += " responsive"
+        } else {
+          nav.className = "navbar"
         }
       }
     </script>
