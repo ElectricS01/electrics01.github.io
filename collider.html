@@ -14,7 +14,7 @@
       content="width=device-width, initial-scale=1"
       charset="utf-8"
     />
-    <link rel="stylesheet" href="/stile.css" />
+    <link rel="stylesheet" href="stile.css" />
   </head>
   <header>
     <div class="navbar" id="mobile-navbar">
@@ -29,25 +29,24 @@
   </header>
 
   <main>
-    <div class="container scroll-bar">
-      <iframe
-        style="border: 0"
-        title="Tetris"
-        allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; xr-spatial-tracking; gamepad; gyroscope; accelerometer; cross-origin-isolated"
-        src="collider-game.html"
-        allowtransparency="true"
-        id="game_drop"
-        height="600"
-        width="600"
-      ></iframe>
-      <h3>Collider By ElectricS01</h3>
-      <p class="message-text-medium-gray">
-        Inspired by
-        <a href="https://github.com/KDE/kollision">Kollision</a>
-      </p>
-      <p class="message-text-medium-gray">
-        <a href="https://github.com/ElectricS01/Collider">source code</a>
-      </p>
+    <div class="container-flex scroll-bar">
+      <div class="menu">
+        <iframe
+          id="game_drop"
+          :style="minDimension"
+          title="Collider"
+          allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; xr-spatial-tracking; gamepad; gyroscope; accelerometer; cross-origin-isolated"
+          src="/colliderGame.html"
+        ></iframe>
+        <h3>Collider By ElectricS01</h3>
+        <p class="message-text-medium-gray">
+          Inspired by
+          <a href="https://github.com/KDE/kollision">Kollision</a>
+        </p>
+        <p class="message-text-medium-gray">
+          <a href="https://github.com/ElectricS01/Collider">source code</a>
+        </p>
+      </div>
     </div>
     <script>
       const mobileNav = () => {
